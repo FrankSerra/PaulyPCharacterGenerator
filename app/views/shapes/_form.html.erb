@@ -19,7 +19,13 @@
   <div class="field">
     <%= form.label :ordering %>
     <%= form.number_field :ordering %>
-    <br /><small>When building a spell name, the word order will follow the numerical order.</small>
+    <br /><small>When building a spell name, the word order will sort numerically.</small>
+  </div>
+
+  <div class="field">
+    <%= form.label 'After element' %>
+    <%= form.check_box :afterelement %>
+    <br /><small>Place this word after the element, rather than before.</small>
   </div>
 
   <div class="actions">

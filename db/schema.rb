@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_151013) do
+ActiveRecord::Schema.define(version: 2019_08_03_154403) do
 
   create_table "armor_types", force: :cascade do |t|
     t.string "name"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_151013) do
     t.integer "ordering"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "afterelement"
   end
 
   create_table "stats", force: :cascade do |t|

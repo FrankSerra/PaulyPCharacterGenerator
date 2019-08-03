@@ -43,7 +43,7 @@ Element.create!([
 	{name: 'Fire'},
 	{name: 'Water'},
 	{name: 'Earth'},
-	{name: 'wind'}
+	{name: 'Wind'}
 	])
 
 Modifier.create!([
@@ -59,15 +59,15 @@ Modifier.create!([
 	])
 
 Shape.create!([
-	{name: 'Passive', ordering: 1},
-	{name: 'Summon', ordering: 2},
-	{name: 'Single-target', ordering: 3},
-	{name: 'Enchantment', ordering: 4},
-	{name: 'Pillar', ordering: 5},
-	{name: 'Wall', ordering: 6},
-	{name: 'Nova', ordering: 7},
-	{name: 'Pool', ordering: 8},
-	{name: 'Projectile', ordering: 9}
+	{name: 'Passive', 			afterelement:false, ordering: 1},
+	{name: 'Summon', 				afterelement:false, ordering: 2},
+	{name: 'Single-target', afterelement:false, ordering: 3},
+	{name: 'Enchantment', 	afterelement:true,  ordering: 4},
+	{name: 'Pillar', 				afterelement:true,  ordering: 5},
+	{name: 'Wall', 					afterelement:true,  ordering: 6},
+	{name: 'Nova', 					afterelement:true,  ordering: 7},
+	{name: 'Pool', 					afterelement:true,  ordering: 8},
+	{name: 'Projectile', 		afterelement:true,  ordering: 9}
 	])
 
 CharConfig.create!([

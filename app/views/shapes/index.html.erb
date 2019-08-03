@@ -2,6 +2,7 @@
 
 <h1>Shapes</h1>
 
+<h4>Shapes placed before Element:</h4>
 <table>
   <thead>
     <tr>
@@ -12,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @shapes.sort_by(&:ordering).each do |shape| %>
+    <% @shapes.where(afterelement: 0).sort_by(&:ordering).each do |shape| %>
       <tr>
         <td><%= shape.name %></td>
         <td><%= shape.ordering %></td>
@@ -24,6 +25,31 @@
   </tbody>
 </table>
 
-<br>
+<br />
+
+<h4>Shapes placed after Element:</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ordering</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shapes.where(afterelement: true).sort_by(&:ordering).each do |shape| %>
+      <tr>
+        <td><%= shape.name %></td>
+        <td><%= shape.ordering %></td>
+        <td><%= link_to 'Show', shape %></td>
+        <td><%= link_to 'Edit', edit_shape_path(shape) %></td>
+        <td><%= link_to 'Destroy', shape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
 
 <%= link_to 'New Shape', new_shape_path %>
