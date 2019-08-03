@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_005622) do
+ActiveRecord::Schema.define(version: 2019_08_03_151013) do
 
   create_table "armor_types", force: :cascade do |t|
     t.string "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_08_02_005622) do
     t.boolean "subtractstatline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "generatespell"
   end
 
   create_table "shapes", force: :cascade do |t|

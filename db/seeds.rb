@@ -26,9 +26,9 @@ Stat.create!([
 	])
 
 Resource.create!([
-	{name: 'Stamina', baseval: 2, addstatline: true, subtractstatline: false},
-	{name: 'Focus', baseval: 2, addstatline: true, subtractstatline: false},
-	{name: 'Mana', baseval: 2, addstatline: true, subtractstatline: false}
+	{name: 'Stamina', baseval: 2, generatespell: false, addstatline: true, subtractstatline: false},
+	{name: 'Focus',   baseval: 2, generatespell: false, addstatline: true, subtractstatline: false},
+	{name: 'Mana',    baseval: 2, generatespell: true,  addstatline: true, subtractstatline: false}
 	])
 
 ArmorType.create!([

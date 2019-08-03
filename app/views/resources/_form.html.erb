@@ -17,17 +17,22 @@
   </div>
 
   <div class="field">
-    <%= form.label :baseval %>
+    <%= form.label 'Base value' %>
     <%= form.number_field :baseval %>
   </div>
 
   <div class="field">
-    <%= form.label :addstatline %>
+    <%= form.label 'Having this resource generates a spell' %>
+    <%= form.check_box :generatespell %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Take statline extra points and add them to base value' %>
     <%= form.check_box :addstatline %>
   </div>
 
   <div class="field">
-    <%= form.label :subtractstatline %>
+    <%= form.label 'Take statline extra points and subtract them from base value' %>
     <%= form.check_box :subtractstatline %>
   </div>
 

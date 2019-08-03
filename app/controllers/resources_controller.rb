@@ -69,6 +69,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :baseval, :addstatline, :subtractstatline)
+      params.require(:resource).permit(:name, :baseval, :generatespell, :addstatline, :subtractstatline)
     end
 end

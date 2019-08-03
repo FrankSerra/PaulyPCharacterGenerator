@@ -71,7 +71,10 @@ if loadout.count < style[2]
 end
 
 puts "Weapons: " + loadout.join(', ')
+
 #Armor
+armor = (db.query 'SELECT ID, NAME from armor_types ORDER BY RANDOM() LIMIT 1').next
+puts "Armor: " + armor[1]
 
 #Spell
 
