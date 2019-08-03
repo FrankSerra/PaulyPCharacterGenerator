@@ -55,7 +55,7 @@ Modifier.create!([
 	{name: 'Efficient', replacewithshape: false},
 	{name: 'Chaotic', replacewithshape: false},
 	{name: 'Split', replacewithshape: false},
-	{name: 'None', replacewithshape: true}
+	{name: 'Substitute: Shape', replacewithshape: true}
 	])
 
 Shape.create!([
@@ -86,11 +86,12 @@ o_r_dw  = OffenseType.create!({name: 'Dual-Wield Firearm', numberofweapons: 2})
 o_r_th  = OffenseType.create!({name: 'Thrown Weapon', numberofweapons: 1})
 o_none  = OffenseType.create!({name: 'Unarmed', numberofweapons: 0})
 
-   sword = Weapon.create!({name: 'Sword'})
 	   axe = Weapon.create!({name: 'Axe'})
     mace = Weapon.create!({name: 'Mace'})
+	shield = Weapon.create!({name: 'Shield'})
    spear = Weapon.create!({name: 'Spear'})
-  shield = Weapon.create!({name: 'Shield'})
+	 sword = Weapon.create!({name: 'Sword'})
+
 	   bow = Weapon.create!({name: 'Bow'})
 crossbow = Weapon.create!({name: 'Crossbow'})
   dagger = Weapon.create!({name: 'Dagger'})
@@ -98,11 +99,6 @@ crossbow = Weapon.create!({name: 'Crossbow'})
 	 rifle = Weapon.create!({name: 'Rifle'})
 
 WeaponOffenseTypeCombo.create!([
-	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_1h.id},
-	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_2h.id},
-	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_s.id},
-	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_dw.id},
-
 	{alwayspick: false, weapon_id: axe.id, offense_type_id: o_m_1h.id},
 	{alwayspick: false, weapon_id: axe.id, offense_type_id: o_m_2h.id},
 	{alwayspick: false, weapon_id: axe.id, offense_type_id: o_m_s.id},
@@ -118,6 +114,11 @@ WeaponOffenseTypeCombo.create!([
 	{alwayspick: false, weapon_id: spear.id, offense_type_id: o_m_2h.id},
 	{alwayspick: false, weapon_id: spear.id, offense_type_id: o_m_s.id},
 	{alwayspick: false, weapon_id: spear.id, offense_type_id: o_r_th.id},
+
+	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_1h.id},
+	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_2h.id},
+	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_s.id},
+	{alwayspick: false, weapon_id: sword.id, offense_type_id: o_m_dw.id},
 
 	{alwayspick: true,  weapon_id: shield.id, offense_type_id: o_m_s.id},
 

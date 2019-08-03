@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @shapes.each do |shape| %>
+    <% @shapes.sort_by(&:ordering).each do |shape| %>
       <tr>
         <td><%= shape.name %></td>
         <td><%= shape.ordering %></td>

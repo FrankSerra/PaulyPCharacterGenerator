@@ -1,21 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Weapon-Style Combos</h1>
+<h1><%= WeaponOffenseTypeCombo.label.pluralize %></h1>
 
 <table>
   <thead>
     <tr>
       <th>Weapon</th>
-      <th>Style</th>
+      <th><%= OffenseType.label %></th>
+      <th>Always Pick</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @weapon_offense_type_combos.each do |weapon_offense_type_combo| %>
+    <% @weapon_offense_type_combos.sort_by{|w| [w.weapon_id, w.offense_type_id, w.alwayspick]}.each do |weapon_offense_type_combo| %>
       <tr>
         <td><%= weapon_offense_type_combo.weapon.name %></td>
         <td><%= weapon_offense_type_combo.offense_type.name %></td>
+        <td><%= weapon_offense_type_combo.pick(false) %></td>
         <td><%= link_to 'Show', weapon_offense_type_combo %></td>
         <td><%= link_to 'Edit', edit_weapon_offense_type_combo_path(weapon_offense_type_combo) %></td>
         <td><%= link_to 'Destroy', weapon_offense_type_combo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Weapon Offense Type Combo', new_weapon_offense_type_combo_path %>
+<%= link_to 'New '+WeaponOffenseTypeCombo.label, new_weapon_offense_type_combo_path %>

@@ -2,7 +2,7 @@
 
 <h2>General</h2>
 <ul>
-  <li><%= link_to 'System Configuration', char_configs_path %></li>
+  <li><%= link_to CharConfig.label, char_configs_path %></li>
 </ul>
 
 <h2>Character</h2>
@@ -15,9 +15,9 @@
 <h2>Combat</h2>
 <ul>
   <li><%= link_to 'Armor', armor_types_path %></li>
-  <li><%= link_to 'Styles', offense_types_path %></li>
-  <li><%= link_to 'Weapons', weapons_path %></li>
-  <li><%= link_to 'Weapon-Style pairings', weapon_offense_type_combos_path %></li>
+  <li><%= link_to OffenseType.label.pluralize, offense_types_path %></li>
+  <li><%= link_to Weapon.label.pluralize, weapons_path %></li>
+  <li><%= link_to WeaponOffenseTypeCombo.label.pluralize, weapon_offense_type_combos_path %></li>
 </ul>
 
 <h2>Magic</h2>

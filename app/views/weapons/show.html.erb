@@ -6,9 +6,14 @@
 </p>
 
 <p>
-  <strong>Styles:</strong>
+  <strong><%= OffenseType.label %>s:</strong>
   <ul>
-  <% @weapon.weaponoffensetypecombos.each do |combo| %>
+  <% @weapon.weaponoffensetypecombos.where(alwayspick: true).each do |combo| %>
+    <li>
+      <%= combo.offense_type.name + ' (Always Pick)' %>
+    </li>
+  <% end %>
+  <% @weapon.weaponoffensetypecombos.where(alwayspick: false).each do |combo| %>
     <li>
       <%= combo.offense_type.name %>
     </li>
@@ -16,14 +21,17 @@
   </ul>
 </p>
 
-<h3>Add a Style:</h3>
+<h3>Add a <%= OffenseType.label %>:</h3>
 <%= form_with(model: [@weapon.weaponoffensetypecombos.build ], local: true) do |form| %>
   <p>
     <%= form.select :offense_type_id, options_for_select(OffenseType.where.not(id: @weapon.style_ids).map{ |o| [o.name, o.id] }) %>
   </p>
   <p>
+    <%= form.check_box :alwayspick %> Always pick for <%= OffenseType.label %>
+  </p>
+  <p>
     <%= form.hidden_field :weapon_id, value: @weapon.id %>
-    <%= form.submit "Add Style" %>
+    <%= form.submit "Add " + OffenseType.label %>
   </p>
 <% end %>
 

@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :alwayspick %>
-    <%= form.check_box :alwayspick %>
-  </div>
-
-  <div class="field">
     <%= form.label :weapon_id %>
-    <%= form.text_field :weapon_id %>
+    <%= form.select :weapon_id, options_for_select(Weapon.all.map{ |o| [o.name, o.id] }) %>
   </div>
 
   <div class="field">
     <%= form.label :offense_type_id %>
-    <%= form.text_field :offense_type_id %>
+    <%= form.select :offense_type_id, options_for_select(OffenseType.all.map{ |o| [o.name, o.id] }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Always pick' %>
+    <%= form.check_box :alwayspick %>
   </div>
 
   <div class="actions">

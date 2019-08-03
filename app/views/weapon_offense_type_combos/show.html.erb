@@ -1,19 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>This must always be chosen for its Style:</strong>
+  <strong>This must always be chosen for its <%= OffenseType.label %>:</strong>
   <%= @weapon_offense_type_combo.pick %>
 </p>
 
 <p>
-  <strong>Weapon:</strong>
-  <%= @weapon_offense_type_combo.weapon %>
+  <strong><%= Weapon.label %>:</strong>
+  <%= @weapon_offense_type_combo.weapon.name %>
 </p>
 
 <p>
-  <strong>Style:</strong>
-  <%= @weapon_offense_type_combo.offense_type %>
+  <strong><%= OffenseType.label %>:</strong>
+  <%= @weapon_offense_type_combo.offense_type.name %>
 </p>
 
-<%= link_to 'Edit', edit_weapon_offense_type_combo_path(@weapon_offense_type_combo) %> |
-<%= link_to 'Back', weapon_offense_type_combos_path %>
+<%= link_to 'Edit', edit_weapon_offense_type_combo_path(@weapon_offense_type_combo) %>

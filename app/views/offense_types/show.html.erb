@@ -8,14 +8,20 @@
 <p>
   <strong>Number of weapons to generate:</strong>
   <%= @offense_type.numberofweapons %>
+  <br /><small>Weapons that are "always pick" will always be chosen, then this many weapons will be randomly chosen for the character.</small>
 </p>
 
 <p>
   <strong>Weapons:</strong>
   <ul>
-  <% WeaponOffenseTypeCombo.where(offense_type_id: @offense_type.id).each do |combo| %>
+  <% WeaponOffenseTypeCombo.where(alwayspick: true).where(offense_type_id: @offense_type.id).each do |combo| %>
     <li>
-      <%= combo.weapon.name %>
+      <%= combo.weapon.name + ' (Always Pick)' %>
+    </li>
+  <% end %>
+  <% WeaponOffenseTypeCombo.where(alwayspick: false).where(offense_type_id: @offense_type.id).each do |combo| %>
+    <li>
+      <%= combo.weapon.name + (combo.alwayspick ? ' (Always Pick)' : '') %>
     </li>
   <% end %>
   </ul>
@@ -25,6 +31,9 @@
 <%= form_with(model: [@offense_type.weaponoffensetypecombos.build ], local: true) do |form| %>
   <p>
     <%= form.select :weapon_id, options_for_select(Weapon.where.not(id: @offense_type.weapon_ids).map{ |o| [o.name, o.id] }) %>
+  </p>
+  <p>
+    <%= form.check_box :alwayspick %> Always pick for <%= OffenseType.label %>
   </p>
   <p>
     <%= form.hidden_field :offense_type_id, value: @offense_type.id %>
