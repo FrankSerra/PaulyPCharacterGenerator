@@ -66,6 +66,10 @@ weapons.each do |w|
   loadout.append(w[1])
 end
 
+if loadout.count < style[2]
+  loadout.append(loadout[-1])
+end
+
 puts "Weapons: " + loadout.join(', ')
 #Armor
 
