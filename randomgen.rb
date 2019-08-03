@@ -33,12 +33,12 @@ class Character
     loop do
       statline_okay = true
       statline = {}
-      statline_total = 0
+      @statline_total = 0
       stats.each do |stat|
         roll = rand(stat[2]..stat[3])
         statline[stat[1]] = roll.to_s
-        statline_total += roll
-        if(statline_total > @config[0])
+        @statline_total += roll
+        if(@statline_total > @config[0])
           statline_okay = false
         end
       end
@@ -215,4 +215,4 @@ end
 looper.to_i.times do
   char = Character.new()
   puts char.output
-end #repeat for generation
+end
