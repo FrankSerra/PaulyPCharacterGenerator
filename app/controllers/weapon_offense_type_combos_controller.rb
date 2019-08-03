@@ -27,7 +27,7 @@ class WeaponOffenseTypeCombosController < ApplicationController
     @weapon_offense_type_combo = WeaponOffenseTypeCombo.new(weapon_offense_type_combo_params)
 
     respond_to do |format|
-      if @weapon_offense_type_combo.save!
+      if @weapon_offense_type_combo.save
         format.html { redirect_to @weapon_offense_type_combo, notice: 'Weapon offense type combo was successfully created.' }
         format.json { render :show, status: :created, location: @weapon_offense_type_combo }
       else
