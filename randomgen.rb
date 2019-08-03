@@ -27,7 +27,7 @@ class Character
     if @loadout != nil
       out += ('Loadout'.rjust(pad) + ': ' + @style)
       if @loadout.count > 0
-        out += ' (Weapon: ' + @loadout.join(', ') + ')'
+        out += ' (' + @loadout.join(', ') + ')'
       end
       out += (sep + sep)
     end
@@ -164,7 +164,7 @@ spell = ''
   number_elements.times do
     element = (db.query 'SELECT ID, NAME from elements ORDER BY RANDOM() LIMIT 1').next
     if element_text != ''
-      element_text += '-'
+      element_text += '+'
     end
     element_text += element[1]
   end
