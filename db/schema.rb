@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_171105) do
+ActiveRecord::Schema.define(version: 2019_08_03_183649) do
 
   create_table "armor_types", force: :cascade do |t|
     t.string "name"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2019_08_03_171105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "generatespell"
+    t.integer "minval"
+    t.integer "maxval"
   end
 
   create_table "shapes", force: :cascade do |t|

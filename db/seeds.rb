@@ -80,9 +80,9 @@ o_r_dw  = OffenseType.create!({name: 'Dual-Wield Firearm', numberofweapons: 2})
 o_r_th  = OffenseType.create!({name: 'Thrown Weapon', numberofweapons: 1})
 o_none  = OffenseType.create!({name: 'Unarmed', numberofweapons: 0})
 
-stamina = Resource.create!({name: 'Stamina', baseval: 2, generatespell: false, addstatline: true, subtractstatline: false})
-  focus = Resource.create!({name: 'Focus',   baseval: 2, generatespell: false, addstatline: true, subtractstatline: false})
-	 mana = Resource.create!({name: 'Mana',    baseval: 2, generatespell: true,  addstatline: true, subtractstatline: false})
+stamina = Resource.create!({name: 'Stamina', baseval: 2, minval:2, maxval:0, generatespell: false, addstatline: true,  subtractstatline: false})
+  focus = Resource.create!({name: 'Focus',   baseval: 6, minval:2, maxval:6, generatespell: false, addstatline: false, subtractstatline: true})
+	 mana = Resource.create!({name: 'Mana',    baseval: 2, minval:2, maxval:0, generatespell: true,  addstatline: true,  subtractstatline: false})
 
 ResourceLoadoutCombo.create!([
 	{resource_id: stamina.id, offense_type_id: o_m_1h.id},

@@ -75,20 +75,22 @@ class Character
     @stats = statline
 
     #Choose and calculate resource
-    resource = (db.query 'SELECT ID, NAME, BASEVAL, ADDSTATLINE, SUBTRACTSTATLINE, GENERATESPELL from resources ORDER BY RANDOM() LIMIT 1').next
+    #                            0   1     2        3            4                 5              6       7
+    resource = (db.query 'SELECT ID, NAME, BASEVAL, ADDSTATLINE, SUBTRACTSTATLINE, GENERATESPELL, MINVAL, MAXVAL from resources ORDER BY RANDOM() LIMIT 1').next
     resource_pool = resource[2]
     statexcess = (config[0] - statline_total)
-    if resource[3] #base add statline
+    if resource[3] == 1 #base add statline
       resource_pool += statexcess
-      if resource_pool < resource[2]
-        resource_pool = resource[2]
-      end
-    elsif resource[4] #base minus statline
+    elsif resource[4] == 1 #base minus statline
       resource_pool -= statexcess
-      if resource_pool > resource[2]
-        resource_pool = resource[2]
-      end
     end
+
+    if resource[6] != 0 && resource_pool < resource[6]
+      resource_pool = resource[6]
+    elsif resource[7] != 0 && resource_pool > resource[7]
+      resource_pool = resource[7]
+    end
+
 
     @resourcename  = resource[1]
     @resourcevalue = resource_pool.to_s

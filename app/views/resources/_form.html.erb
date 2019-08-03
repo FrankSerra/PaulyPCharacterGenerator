@@ -22,6 +22,16 @@
   </div>
 
   <div class="field">
+    <%= form.label 'Minimum value (0 to ignore)' %>
+    <%= form.number_field :minval %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Maximum value (0 to ignore)' %>
+    <%= form.number_field :maxval %>
+  </div>
+
+  <div class="field">
     <%= form.label 'Having this resource generates a spell' %>
     <%= form.check_box :generatespell %>
   </div>
