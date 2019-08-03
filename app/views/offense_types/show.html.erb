@@ -11,8 +11,11 @@
   <br /><small>Weapons that are "always pick" will always be chosen, then this many weapons will be randomly chosen for the character.</small>
 </p>
 
+<hr />
+
 <p>
-  <strong>Weapons:</strong>
+  <strong><%= Weapon.label.pluralize %>:</strong>
+  <br /><small>The following <%= Weapon.label.pluralize %> can be chosen for this <%= OffenseType.label %>:</small>
   <ul>
   <% WeaponOffenseTypeCombo.where(alwayspick: true).where(offense_type_id: @offense_type.id).each do |combo| %>
     <li>
@@ -40,6 +43,33 @@
     <%= form.submit "Add Weapon" %>
   </p>
 <% end %>
+
+<hr />
+
+<p>
+  <strong><%= Resource.label.pluralize %>:</strong>
+  <br /><small>Character generation limits choosing this <%= OffenseType.label %> to characters with the following <%= Resource.label.pluralize %>.</small>
+  <ul>
+  <% ResourceLoadoutCombo.where(offense_type_id: @offense_type.id).each do |combo| %>
+    <li>
+      <%= combo.resource.name %>
+    </li>
+  <% end %>
+  </ul>
+</p>
+
+<h3>Add a <%= Resource.label %>:</h3>
+<%= form_with(model: [@offense_type.resourceloadoutcombos.build ], local: true) do |form| %>
+  <p>
+    <%= form.select :resource_id, options_for_select(Resource.where.not(id: @offense_type.resource_ids).map{ |o| [o.name, o.id] }) %>
+  </p>
+  <p>
+    <%= form.hidden_field :offense_type_id, value: @offense_type.id %>
+    <%= form.submit "Add " + Resource.label %>
+  </p>
+<% end %>
+
+<hr />
 
 <%= link_to 'Edit', edit_offense_type_path(@offense_type) %> |
 <%= link_to 'Back', offense_types_path %>

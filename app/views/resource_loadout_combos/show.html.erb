@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= Resource.label %></strong>
+  <%= @resource_loadout_combo.resource %>
+</p>
+
+<p>
+  <strong><%= OffenseType.label %></strong>
+  <%= @resource_loadout_combo.offense_type %>
+</p>
+
+<%= link_to 'Edit', edit_resource_loadout_combo_path(@resource_loadout_combo) %> |
+<%= link_to 'Back', resource_loadout_combos_path %>

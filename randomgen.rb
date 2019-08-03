@@ -15,19 +15,21 @@ class Character
     sep = "\n"
     out = "----------" + sep
 
-    out += ('Race'.rjust(pad) + ': ' + @race + sep + sep)
+    out += ('Race'.rjust(pad) + ': ' + @race + sep)
+    out += ('Armor'.rjust(pad) + ': ' + @armor + sep + sep)
 
     @stats.each do |k,v|
       out += (k.rjust(pad) + ": " + v + sep)
     end
 
-    out += (sep + @resourcename.rjust(pad) + ': ' + @resourcevalue + sep + sep)
+    out += (sep + @resourcename.rjust(pad) + ': ' + @resourcevalue + sep)
 
-    out += ('Armor'.rjust(pad) + ': ' + @armor + sep + sep)
-
-    out += ('Loadout'.rjust(pad) + ': ' + @style)
-    if @loadout.count > 0
-      out +=  (' (Weapon: ' + @loadout.join(', ') + ')' + sep + sep)
+    if @loadout != nil
+      out += ('Loadout'.rjust(pad) + ': ' + @style)
+      if @loadout.count > 0
+        out += ' (Weapon: ' + @loadout.join(', ') + ')'
+      end
+      out += (sep + sep)
     end
 
     if @spell != ''
@@ -93,26 +95,30 @@ char.resourcename  = resource[1]
 char.resourcevalue = resource_pool.to_s
 
 #Style
-style = (db.query 'SELECT ID, NAME, NUMBEROFWEAPONS from offense_types ORDER BY RANDOM() LIMIT 1').next
-char.style = style[1]
+style = (db.query 'SELECT offense_types.ID, offense_types.NAME, offense_types.NUMBEROFWEAPONS from offense_types INNER JOIN resource_loadout_combos ON offense_types.ID = resource_loadout_combos.offense_type_id AND resource_loadout_combos.resource_id = ' + resource[0].to_s + ' ORDER BY RANDOM() LIMIT 1').next
+if style != nil
+  char.style = style[1]
+end
 
 #Weapons
-mandatory_weapons = db.query 'SELECT weapons.ID, weapons.NAME from weapons INNER JOIN weapon_offense_type_combos ON weapon_offense_type_combos.alwayspick = 1 AND weapon_offense_type_combos.weapon_id = weapons.id AND weapon_offense_type_combos.offense_type_id = ' + style[0].to_s
-weapons = db.query 'SELECT weapons.ID, weapons.NAME from weapons INNER JOIN weapon_offense_type_combos ON weapon_offense_type_combos.weapon_id = weapons.id AND weapon_offense_type_combos.offense_type_id = ' + style[0].to_s + ' ORDER BY RANDOM() LIMIT ' + style[2].to_s
+if style != nil
+  mandatory_weapons = db.query 'SELECT weapons.ID, weapons.NAME from weapons INNER JOIN weapon_offense_type_combos ON weapon_offense_type_combos.alwayspick = 1 AND weapon_offense_type_combos.weapon_id = weapons.id AND weapon_offense_type_combos.offense_type_id = ' + style[0].to_s
+  weapons = db.query 'SELECT weapons.ID, weapons.NAME from weapons INNER JOIN weapon_offense_type_combos ON weapon_offense_type_combos.weapon_id = weapons.id AND weapon_offense_type_combos.offense_type_id = ' + style[0].to_s + ' ORDER BY RANDOM() LIMIT ' + style[2].to_s
 
-loadout = []
-mandatory_weapons.each do |w|
-  loadout.append(w[1])
-end
-weapons.each do |w|
-  loadout.append(w[1])
-end
+  loadout = []
+  mandatory_weapons.each do |w|
+    loadout.append(w[1])
+  end
+  weapons.each do |w|
+    loadout.append(w[1])
+  end
 
-if loadout.count < style[2]
-  loadout.append(loadout[-1])
-end
+  if loadout.count < style[2]
+    loadout.append(loadout[-1])
+  end
 
-char.loadout = loadout
+  char.loadout = loadout
+end
 
 #Armor
 armor = (db.query 'SELECT ID, NAME from armor_types ORDER BY RANDOM() LIMIT 1').next

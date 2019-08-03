@@ -6,19 +6,44 @@
 </p>
 
 <p>
-  <strong>Baseval:</strong>
+  <strong>Base value:</strong>
   <%= @resource.baseval %>
 </p>
 
 <p>
-  <strong>Addstatline:</strong>
+  <strong>Add statline to base:</strong>
   <%= @resource.addstatline %>
 </p>
 
 <p>
-  <strong>Subtractstatline:</strong>
+  <strong>Subtract statline from base:</strong>
   <%= @resource.subtractstatline %>
 </p>
+
+<hr />
+<p>
+  <strong><%= OffenseType.label.pluralize %>:</strong>
+  <br /><small>This <%= Resource.label %> limits character generation to the following <%= OffenseType.label.pluralize %>.</small>
+  <ul>
+  <% @resource.resourceloadoutcombos.each do |combo| %>
+    <li>
+      <%= combo.offense_type.name %>
+    </li>
+  <% end %>
+  </ul>
+</p>
+
+<h3>Add a <%= OffenseType.label %>:</h3>
+<%= form_with(model: [@resource.resourceloadoutcombos.build ], local: true) do |form| %>
+  <p>
+    <%= form.select :offense_type_id, options_for_select(OffenseType.where.not(id: @resource.offense_type_ids).map{ |o| [o.name, o.id] }) %>
+  </p>
+  <p>
+    <%= form.hidden_field :resource_id, value: @resource.id %>
+    <%= form.submit "Add " + OffenseType.label %>
+  </p>
+<% end %>
+<hr />
 
 <%= link_to 'Edit', edit_resource_path(@resource) %> |
 <%= link_to 'Back', resources_path %>

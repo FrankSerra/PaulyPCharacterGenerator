@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_154403) do
+ActiveRecord::Schema.define(version: 2019_08_03_171105) do
 
   create_table "armor_types", force: :cascade do |t|
     t.string "name"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2019_08_03_154403) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "resource_loadout_combos", force: :cascade do |t|
+    t.integer "resource_id"
+    t.integer "offense_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offense_type_id"], name: "index_resource_loadout_combos_on_offense_type_id"
+    t.index ["resource_id"], name: "index_resource_loadout_combos_on_resource_id"
   end
 
   create_table "resources", force: :cascade do |t|

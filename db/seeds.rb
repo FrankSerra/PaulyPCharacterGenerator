@@ -25,12 +25,6 @@ Stat.create!([
 	{name: 'Perception', minval: 1, maxval: 6}
 	])
 
-Resource.create!([
-	{name: 'Stamina', baseval: 2, generatespell: false, addstatline: true, subtractstatline: false},
-	{name: 'Focus',   baseval: 2, generatespell: false, addstatline: true, subtractstatline: false},
-	{name: 'Mana',    baseval: 2, generatespell: true,  addstatline: true, subtractstatline: false}
-	])
-
 ArmorType.create!([
 	{name: 'Light'},
 	{name: 'Medium'},
@@ -86,6 +80,28 @@ o_r_dw  = OffenseType.create!({name: 'Dual-Wield Firearm', numberofweapons: 2})
 o_r_th  = OffenseType.create!({name: 'Thrown Weapon', numberofweapons: 1})
 o_none  = OffenseType.create!({name: 'Unarmed', numberofweapons: 0})
 
+stamina = Resource.create!({name: 'Stamina', baseval: 2, generatespell: false, addstatline: true, subtractstatline: false})
+  focus = Resource.create!({name: 'Focus',   baseval: 2, generatespell: false, addstatline: true, subtractstatline: false})
+	 mana = Resource.create!({name: 'Mana',    baseval: 2, generatespell: true,  addstatline: true, subtractstatline: false})
+
+ResourceLoadoutCombo.create!([
+	{resource_id: stamina.id, offense_type_id: o_m_1h.id},
+	{resource_id: stamina.id, offense_type_id: o_m_2h.id},
+	{resource_id: stamina.id, offense_type_id: o_m_s.id},
+	{resource_id: stamina.id, offense_type_id: o_m_dw.id},
+	{resource_id: stamina.id, offense_type_id: o_none.id},
+
+	{resource_id: focus.id, offense_type_id: o_r_bow.id},
+	{resource_id: focus.id, offense_type_id: o_r_cb.id},
+	{resource_id: focus.id, offense_type_id: o_r_1h.id},
+	{resource_id: focus.id, offense_type_id: o_r_2h.id},
+	{resource_id: focus.id, offense_type_id: o_r_dw.id},
+	{resource_id: focus.id, offense_type_id: o_r_th.id}
+
+	#nothing for focus, they only get their spell
+	])
+
+
 	   axe = Weapon.create!({name: 'Axe'})
     mace = Weapon.create!({name: 'Mace'})
 	shield = Weapon.create!({name: 'Shield'})
@@ -129,6 +145,7 @@ WeaponOffenseTypeCombo.create!([
 	{alwayspick: false, weapon_id: dagger.id, offense_type_id: o_r_th.id},
 
 	{alwayspick: false, weapon_id: pistol.id, offense_type_id: o_r_1h.id},
+	{alwayspick: false, weapon_id: pistol.id, offense_type_id: o_r_dw.id},
 
 	{alwayspick: false, weapon_id: rifle.id, offense_type_id: o_r_2h.id}
 	])

@@ -9,7 +9,7 @@
 <ul>
   <li><%= link_to 'Races', races_path %></li>
   <li><%= link_to 'Stats', stats_path %></li>
-  <li><%= link_to 'Resources', resources_path %></li>
+  <li><%= link_to Resource.label.pluralize, resources_path %></li>
 </ul>
 
 <h2>Combat</h2>
@@ -17,7 +17,12 @@
   <li><%= link_to 'Armor', armor_types_path %></li>
   <li><%= link_to OffenseType.label.pluralize, offense_types_path %></li>
   <li><%= link_to Weapon.label.pluralize, weapons_path %></li>
+</ul>
+
+<h2>Relationships</h2>
+<ul>
   <li><%= link_to WeaponOffenseTypeCombo.label.pluralize, weapon_offense_type_combos_path %></li>
+  <li><%= link_to ResourceLoadoutCombo.label.pluralize, resource_loadout_combos_path %></li>
 </ul>
 
 <h2>Magic</h2>

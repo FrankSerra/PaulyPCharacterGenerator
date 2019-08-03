@@ -1,0 +1,27 @@
+<%= form_with(model: resource_loadout_combo, local: true) do |form| %>
+  <% if resource_loadout_combo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(resource_loadout_combo.errors.count, "error") %> prohibited this resource_loadout_combo from being saved:</h2>
+
+      <ul>
+      <% resource_loadout_combo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label Resource.label %>
+    <%= form.select :resource_id, options_for_select(Resource.all.map{ |o| [o.name, o.id] }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label OffenseType.label %>
+    <%= form.select :offense_type_id, options_for_select(OffenseType.all.map{ |o| [o.name, o.id] }) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Save '+ ResourceLoadoutCombo.label %>
+  </div>
+<% end %>

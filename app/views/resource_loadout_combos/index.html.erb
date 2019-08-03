@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= ResourceLoadoutCombo.label.pluralize %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= Resource.label %></th>
+      <th><%= OffenseType.label %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resource_loadout_combos.each do |resource_loadout_combo| %>
+      <tr>
+        <td><%= resource_loadout_combo.resource.name %></td>
+        <td><%= resource_loadout_combo.offense_type.name %></td>
+        <td><%= link_to 'Show', resource_loadout_combo %></td>
+        <td><%= link_to 'Edit', edit_resource_loadout_combo_path(resource_loadout_combo) %></td>
+        <td><%= link_to 'Destroy', resource_loadout_combo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New ' + ResourceLoadoutCombo.label, new_resource_loadout_combo_path %>

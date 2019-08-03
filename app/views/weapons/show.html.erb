@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <strong><%= OffenseType.label %>s:</strong>
+  <strong><%= OffenseType.label.pluralize %>s:</strong>
   <ul>
   <% @weapon.weaponoffensetypecombos.where(alwayspick: true).each do |combo| %>
     <li>

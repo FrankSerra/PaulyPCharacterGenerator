@@ -1,0 +1,2 @@
+module ResourceLoadoutCombosHelper
+end
