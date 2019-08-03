@@ -13,7 +13,8 @@ class Character
   def output
     pad = 10
     sep = "\n"
-    out = "----------" + sep
+    frame = "----------------------------------------"
+    out = frame + sep
 
     out += ('Race'.rjust(pad) + ': ' + @race + sep)
     out += ('Armor'.rjust(pad) + ': ' + @armor + sep + sep)
@@ -36,7 +37,7 @@ class Character
       out += ('Spell'.rjust(pad) + ': ' + @spell + sep + sep)
     end
 
-    out += '----------'
+    out += frame
     return out
   end
 end
