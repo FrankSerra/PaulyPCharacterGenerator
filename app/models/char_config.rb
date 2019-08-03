@@ -1,0 +1,2 @@
+class CharConfig < ApplicationRecord
+end

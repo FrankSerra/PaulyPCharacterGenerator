@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Max value for statline:</strong>
+  <%= @char_config.statlinemax %>
+</p>
+
+<p>
+  <strong>% chance of double elements:</strong>
+  <%= @char_config.elementdoublepct %>
+</p>
+
+<%= link_to 'Edit', edit_char_config_path(@char_config) %> |
+<%= link_to 'Back', char_configs_path %>

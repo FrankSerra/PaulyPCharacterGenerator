@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Char Configs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Max value for statline</th>
+      <th>% chance of double elements</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @char_configs.each do |char_config| %>
+      <tr>
+        <td><%= char_config.statlinemax %></td>
+        <td><%= char_config.elementdoublepct %></td>
+        <td><%= link_to 'Edit', edit_char_config_path(char_config) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

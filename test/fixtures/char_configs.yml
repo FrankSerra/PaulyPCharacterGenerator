@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  statlinemax: 1
+  elementdoublepct: 1
+
+two:
+  statlinemax: 1
+  elementdoublepct: 1

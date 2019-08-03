@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @resource.name %>
+</p>
+
+<p>
+  <strong>Baseval:</strong>
+  <%= @resource.baseval %>
+</p>
+
+<p>
+  <strong>Addstatline:</strong>
+  <%= @resource.addstatline %>
+</p>
+
+<p>
+  <strong>Subtractstatline:</strong>
+  <%= @resource.subtractstatline %>
+</p>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

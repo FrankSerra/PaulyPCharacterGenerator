@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @offense_type.name %>
+</p>
+
+<p>
+  <strong>Number of weapons to generate:</strong>
+  <%= @offense_type.numberofweapons %>
+</p>
+
+<p>
+  <strong>Weapons:</strong>
+  <ul>
+  <% WeaponOffenseTypeCombo.where(offense_type_id: @offense_type.id).each do |combo| %>
+    <li>
+      <%= combo.weapon.name %>
+    </li>
+  <% end %>
+  </ul>
+</p>
+
+<h3>Add a Weapon:</h3>
+<%= form_with(model: [@offense_type.weaponoffensetypecombos.build ], local: true) do |form| %>
+  <p>
+    <%= form.select :weapon_id, options_for_select(Weapon.where.not(id: @offense_type.weapon_ids).map{ |o| [o.name, o.id] }) %>
+  </p>
+  <p>
+    <%= form.hidden_field :offense_type_id, value: @offense_type.id %>
+    <%= form.submit "Add Weapon" %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_offense_type_path(@offense_type) %> |
+<%= link_to 'Back', offense_types_path %>

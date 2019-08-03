@@ -1,0 +1,27 @@
+<%= form_with(model: char_config, local: true) do |form| %>
+  <% if char_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(char_config.errors.count, "error") %> prohibited this char_config from being saved:</h2>
+
+      <ul>
+      <% char_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Max value for statline" %>
+    <%= form.number_field :statlinemax %>
+  </div>
+
+  <div class="field">
+    <%= form.label "% chance of double elements" %>
+    <%= form.number_field :elementdoublepct %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

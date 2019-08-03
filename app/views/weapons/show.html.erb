@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @weapon.name %>
+</p>
+
+<p>
+  <strong>Styles:</strong>
+  <ul>
+  <% @weapon.weaponoffensetypecombos.each do |combo| %>
+    <li>
+      <%= combo.offense_type.name %>
+    </li>
+  <% end %>
+  </ul>
+</p>
+
+<h3>Add a Style:</h3>
+<%= form_with(model: [@weapon.weaponoffensetypecombos.build ], local: true) do |form| %>
+  <p>
+    <%= form.select :offense_type_id, options_for_select(OffenseType.where.not(id: @weapon.style_ids).map{ |o| [o.name, o.id] }) %>
+  </p>
+  <p>
+    <%= form.hidden_field :weapon_id, value: @weapon.id %>
+    <%= form.submit "Add Style" %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_weapon_path(@weapon) %> |
+<%= link_to 'Back', weapons_path %>
