@@ -10,7 +10,9 @@ class HomeController < ApplicationController
 
     @entries = ''
     count.to_i.times do
-      @entries += Character.new.output
+      char = Character.new
+      @entries += char.output
+      @entries += "\n"
     end
 
     send_data @entries,
