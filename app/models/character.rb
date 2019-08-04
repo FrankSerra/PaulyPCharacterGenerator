@@ -14,7 +14,7 @@ class Character
   end
 
   def choose_race
-    @race = Race.limit(1).order("RANDOM()").first().name
+    @race = Race.all.sample(1).first().name
   end
 
   def choose_armor
