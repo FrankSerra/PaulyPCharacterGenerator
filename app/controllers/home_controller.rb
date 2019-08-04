@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     end
 
     @entries = ''
-    count.times do
+    count.to_i.times do
       @entries += Character.new.output
     end
 
