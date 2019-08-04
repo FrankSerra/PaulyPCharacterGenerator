@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :element_upgrades
   resources :resource_loadout_combos
-  get 'home/index'
   resources :weapon_offense_type_combos
   resources :modifiers
   resources :shapes
@@ -13,7 +12,9 @@ Rails.application.routes.draw do
   resources :stats
   resources :races
   resources :char_configs
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'home/index'
+  get 'home/generate'
 
   root 'home#index'
 end
