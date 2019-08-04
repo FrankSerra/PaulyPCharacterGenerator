@@ -3,11 +3,10 @@ class HomeController < ApplicationController
   end
 
   def generate
-=begin
-    @entries = Element.all
-    send_data @entries.to_xml,
-      :type => 'text/xml; charset=UTF-8;',
-      :disposition => "attachment; filename=entries.xml"
-=end
+    @entries = Character.new.output
+    send_data @entries,
+      :type => 'text; charset=UTF-8;',
+      :disposition => 'inline'
+      #:disposition => "attachment; filename=entries.xml"
   end
 end
