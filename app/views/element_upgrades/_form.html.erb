@@ -1,0 +1,26 @@
+<%= form_with(model: element_upgrade, local: true) do |form| %>
+  <% if element_upgrade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(element_upgrade.errors.count, "error") %> prohibited this element_upgrade from being saved:</h2>
+
+      <ul>
+      <% element_upgrade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= @element_upgrade.elementMath %>
+  </p>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

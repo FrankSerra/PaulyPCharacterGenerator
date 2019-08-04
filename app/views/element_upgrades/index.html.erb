@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Element Upgrades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Elements</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @element_upgrades.each do |element_upgrade| %>
+      <tr>
+        <td><%= element_upgrade.elementMath %></td>
+        <td><%= element_upgrade.name %></td>
+        <td><%= link_to 'Show', element_upgrade %></td>
+        <td><%= link_to 'Edit', edit_element_upgrade_path(element_upgrade) %></td>
+        <td><%= link_to 'Destroy', element_upgrade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

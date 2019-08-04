@@ -69,6 +69,6 @@ class CharConfigsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def char_config_params
-      params.require(:char_config).permit(:statlinemax, :elementdoublepct)
+      params.require(:char_config).permit(:statlinemax, :elementdoublepct, :useelementmath)
     end
 end

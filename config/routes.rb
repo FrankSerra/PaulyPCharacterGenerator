@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :element_upgrades
   resources :resource_loadout_combos
   get 'home/index'
   resources :weapon_offense_type_combos

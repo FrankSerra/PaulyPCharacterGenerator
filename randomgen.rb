@@ -12,7 +12,7 @@ class Character
 
   def choose_config(db)
     #Config
-    @config = (db.query 'SELECT statlinemax, elementdoublepct FROM char_configs LIMIT 1').next
+    @config = (db.query 'SELECT statlinemax, elementdoublepct, useelementmath FROM char_configs LIMIT 1').next
   end
 
   def choose_race(db)
@@ -142,15 +142,29 @@ class Character
       end
 
       element_text = ''
+      element_combo_hash = ''
       number_elements.times do
         element = (db.query 'SELECT ID, NAME from elements ORDER BY RANDOM() LIMIT 1').next
         if element_text != ''
           element_text += '+'
         end
+        if number_elements > 1
+          if element_combo_hash != ''
+            element_combo_hash += '$'
+          end
+          element_combo_hash += element[0].to_s.rjust(3, '0')
+        end
         element_text += element[1]
       end
 
-      spell += element_text
+      if number_elements > 1 && @config[2] == 1
+        hash1 = element_combo_hash
+        hash2 = element_combo_hash.split('$')[1] + '$' + element_combo_hash.split('$')[0]
+        element_upgrade = (db.query 'SELECT NAME from element_upgrades WHERE (combohash = "' + hash1 + '" OR combohash = "' + hash2 + '") LIMIT 1').next
+        spell += element_upgrade[0] != '' ? element_upgrade[0] : element_text
+      else
+        spell += element_text
+      end
 
       if shape_after_text != ''
         spell += ' ' + shape_after_text

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Elements:</strong>
+  <%= @element_upgrade.elementMath %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @element_upgrade.name %>
+</p>
+
+<%= link_to 'Edit', edit_element_upgrade_path(@element_upgrade) %> |
+<%= link_to 'Back', element_upgrades_path %>

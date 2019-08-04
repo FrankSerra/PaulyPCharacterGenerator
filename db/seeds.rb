@@ -33,11 +33,25 @@ ArmorType.create!([
 	{name: 'Armorless'}
 	])
 
-Element.create!([
-	{name: 'Fire'},
-	{name: 'Water'},
-	{name: 'Earth'},
-	{name: 'Wind'}
+ fire = Element.create!({name: 'Fire'})
+water = Element.create!({name: 'Water'})
+earth = Element.create!({name: 'Earth'})
+ wind = Element.create!({name: 'Wind'})
+
+ElementUpgrade.create!([
+	{combohash: fire.getComboHash(fire),   name: "Sunbeam"},
+	{combohash: fire.getComboHash(water),  name: "Steam"},
+	{combohash: fire.getComboHash(earth),  name: "Lava"},
+	{combohash: fire.getComboHash(wind),   name: "Lightning"},
+
+	{combohash: water.getComboHash(water), name: "Moonbeam"},
+	{combohash: water.getComboHash(earth), name: "Mud"},
+	{combohash: water.getComboHash(wind),  name: "Rain"},
+
+	{combohash: earth.getComboHash(earth), name: "Steel"},
+	{combohash: earth.getComboHash(wind),  name: "Sand"},
+
+	{combohash: wind.getComboHash(wind),   name: "Tornado"},
 	])
 
 Modifier.create!([
@@ -65,7 +79,7 @@ Shape.create!([
 	])
 
 CharConfig.create!([
-	{statlinemax: 12, elementdoublepct:50}
+	{statlinemax: 12, elementdoublepct: 50, useelementmath: true}
 	])
 
 o_m_1h  = OffenseType.create!({name: '1-Hand Melee', numberofweapons: 1})

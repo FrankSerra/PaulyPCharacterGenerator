@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_183649) do
+ActiveRecord::Schema.define(version: 2019_08_04_012938) do
 
   create_table "armor_types", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2019_08_03_183649) do
   create_table "char_configs", force: :cascade do |t|
     t.integer "statlinemax"
     t.integer "elementdoublepct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "useelementmath"
+  end
+
+  create_table "element_upgrades", force: :cascade do |t|
+    t.string "combohash"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
