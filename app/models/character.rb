@@ -18,7 +18,7 @@ class Character
   end
 
   def choose_armor
-    @armor = ArmorType.limit(1).order("RANDOM()").first().name
+    @armor = ArmorType.all.sample(1).first().name
   end
 
   def choose_stats
@@ -46,7 +46,7 @@ class Character
   end
 
   def choose_resource
-    resource = Resource.limit(1).order("RANDOM()").first
+    resource = Resource.all.sample(1).first
     @resource_id = resource.id.to_s
     @generatespell = (resource.generatespell == true)
     resource_pool = resource.baseval
@@ -69,13 +69,13 @@ class Character
   end
 
   def choose_style
-    @style = OffenseType.joins(:resourceloadoutcombos).where(resource_loadout_combos: {resource_id: @resource_id}).limit(1).order("RANDOM()").first
+    @style = OffenseType.joins(:resourceloadoutcombos).where(resource_loadout_combos: {resource_id: @resource_id}).sample(1).first
   end
 
   def choose_weapons
     if @style
       mandatory_weapons = Weapon.joins(:weaponoffensetypecombos).where(weapon_offense_type_combos: {alwayspick: 1, offense_type_id: @style.id})
-      weapons = Weapon.joins(:weaponoffensetypecombos).where(weapon_offense_type_combos: {alwayspick: 0, offense_type_id: @style.id}).limit(@style.numberofweapons).order("RANDOM()")
+      weapons = Weapon.joins(:weaponoffensetypecombos).where(weapon_offense_type_combos: {alwayspick: 0, offense_type_id: @style.id}).sample(@style.numberofweapons)
 
       loadout = []
       mandatory_weapons.each do |w|
@@ -100,7 +100,7 @@ class Character
       number_shapes = 1
 
     #Modifier, then check if we get 2 shapes instead
-      modifier = Modifier.limit(1).order("RANDOM()").first
+      modifier = Modifier.all.sample(1).first
       if modifier.replacewithshape == true
         number_shapes += 1
       else
@@ -109,7 +109,7 @@ class Character
 
     #Shape
       shape_after_text = ''
-      shapes = Shape.limit(number_shapes).order("RANDOM()")
+      shapes = Shape.all.sample(number_shapes)
 
       shapes.each do |shape|
         puts shape.afterelement
@@ -133,7 +133,7 @@ class Character
       element_text = ''
       element_combo_hash = ''
       number_elements.times do
-        element = Element.limit(1).order("RANDOM()").first
+        element = Element.all.sample(1).first
         if element_text != ''
           element_text += '+'
         end
