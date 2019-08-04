@@ -3,7 +3,16 @@ class HomeController < ApplicationController
   end
 
   def generate
-    @entries = Character.new.output
+    count = 1
+    if params[:count]
+      count = params[:count]
+    end
+
+    @entries = ''
+    count.times do
+      @entries += Character.new.output
+    end
+
     send_data @entries,
       :type => 'text; charset=UTF-8;',
       :disposition => 'inline'
