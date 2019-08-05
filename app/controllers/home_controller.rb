@@ -8,16 +8,26 @@ class HomeController < ApplicationController
       count = params[:count]
     end
 
-    @entries = ''
+    @characters = []
+
     count.to_i.times do
-      char = Character.new
-      @entries += char.output
-      @entries += "\n"
+      @characters.append(Character.new)
     end
 
-    send_data @entries,
+    respond_to do |format|
+      format.html { render "generate", characters: @characters }
+      format.text  { gen_char_txt }
+    end
+  end
+
+  def gen_char_txt
+    entries = ''
+    @characters.each do |c|
+      entries += (c.output + "\n")
+    end
+
+    send_data entries,
       :type => 'text; charset=UTF-8;',
       :disposition => 'inline'
-      #:disposition => "attachment; filename=entries.xml"
   end
 end

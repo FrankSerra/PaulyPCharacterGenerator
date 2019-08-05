@@ -1,6 +1,10 @@
 <h1>Wargame Variables Configurator</h1>
 
-<%= link_to 'Generate character', home_generate_path, target: '_blank' %>
+<h2>Character Generation</h2>
+<ul>
+  <li><%= link_to 'Generate characters (plain text)', home_generate_path(:format => "txt", :count => 1), target: '_blank' %></li>
+  <li><%= link_to 'Generate characters (pretty)', home_generate_path(:count => 1), target: '_blank' %></li>
+</ul>
 
 <h2>General</h2>
 <ul>

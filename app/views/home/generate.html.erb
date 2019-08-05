@@ -1,2 +1,5 @@
-<h1>Home#generate</h1>
-<p>Find me in app/views/home/generate.html.erb</p>
+<% @characters.each do |c| %>
+  <div class="character_card">
+    <%= c.output %>
+  </div>
+<% end %>
