@@ -20,9 +20,9 @@ Race.create!([
 	])
 
 Stat.create!([
-	{name: 'Strength', minval: 1, maxval: 6},
-	{name: 'Agility', minval: 1, maxval: 6},
-	{name: 'Perception', minval: 1, maxval: 6}
+	{name: 'Strength',   shortname: "STR", minval: 1, maxval: 6},
+	{name: 'Agility',    shortname: "AGI", minval: 1, maxval: 6},
+	{name: 'Perception', shortname: "PER", minval: 1, maxval: 6}
 	])
 
 ArmorType.create!([

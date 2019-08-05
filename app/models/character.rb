@@ -1,6 +1,7 @@
 class Character
   attr_accessor :race
   attr_accessor :stats
+  attr_accessor :stats_short
   attr_accessor :resourcename
   attr_accessor :resourcevalue
   attr_accessor :style
@@ -24,15 +25,18 @@ class Character
   def choose_stats
     stats = Stat.all
     statline = {}
+    statline_short = {}
     @statline_total = 0
 
     loop do
       statline_okay = true
       statline = {}
+      statline_short = {}
       @statline_total = 0
       stats.each do |stat|
         roll = rand(stat.minval..stat.maxval)
         statline[stat.name] = roll.to_s
+        statline_short[stat.shortname] = roll.to_s
         @statline_total += roll
         if(@statline_total > @config.statlinemax)
           statline_okay = false
@@ -43,6 +47,7 @@ class Character
     end
 
     @stats = statline
+    @stats_short = statline_short
   end
 
   def choose_resource

@@ -1,5 +1,33 @@
-<% @characters.each do |c| %>
-  <div class="character_card">
-    <%= c.output %>
-  </div>
-<% end %>
+<br />
+<table>
+  <thead>
+    <tr>
+      <th>Race</th>
+      <th>Armor</th>
+      <th>Stats</th>
+      <th>Resource</th>
+      <th>Loadout</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @characters.each do |c| %>
+    <tr>
+      <td style="text-align:right"><%= c.race %></td>
+      <td><%= c.armor %></td>
+      <td>
+        <%= c.stats_short.each.map{|k, v| k + ": " + v}.join(", ") %>
+      </td>
+      <td style="text-align:right"><%= c.resourcename + ": " + c.resourcevalue %></td>
+      <td  style="text-align:left">
+        <% if c.style %>
+          <%= c.style.name %>
+          <% if c.loadout %>
+            <%= " (" + c.loadout.join(", ") + ")" %>
+          <% end %>
+        <% end %>
+        <%= c.spell != "" ? ("Spell: " + c.spell) : "" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
