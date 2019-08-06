@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :element_upgrades
+  resources :element_upgrades, except: :destroy
   resources :resource_loadout_combos
   resources :weapon_offense_type_combos
   resources :modifiers
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :stats
   resources :races
-  resources :char_configs
+  resources :char_configs, except: [:create, :new, :destroy]
 
   get 'home/index'
   get 'home/generate'

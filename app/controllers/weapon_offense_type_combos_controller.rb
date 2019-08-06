@@ -23,6 +23,7 @@ class WeaponOffenseTypeCombosController < ApplicationController
 
   # POST /weapon_offense_type_combos
   # POST /weapon_offense_type_combos.json
+=begin
   def create
     @weapon_offense_type_combo = WeaponOffenseTypeCombo.new(weapon_offense_type_combo_params)
 
@@ -36,7 +37,7 @@ class WeaponOffenseTypeCombosController < ApplicationController
       end
     end
   end
-
+=end
   # PATCH/PUT /weapon_offense_type_combos/1
   # PATCH/PUT /weapon_offense_type_combos/1.json
   def update
@@ -53,6 +54,7 @@ class WeaponOffenseTypeCombosController < ApplicationController
 
   # DELETE /weapon_offense_type_combos/1
   # DELETE /weapon_offense_type_combos/1.json
+=begin
   def destroy
     @weapon_offense_type_combo.destroy
     respond_to do |format|
@@ -60,6 +62,7 @@ class WeaponOffenseTypeCombosController < ApplicationController
       format.json { head :no_content }
     end
   end
+=end
 
   private
     # Use callbacks to share common setup or constraints between actions.

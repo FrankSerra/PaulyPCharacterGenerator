@@ -14,6 +14,6 @@ class OffenseType < ApplicationRecord
   end
 
   def self.label
-    return 'Style'
+    return 'Fighting Style'
   end
 end
