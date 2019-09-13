@@ -30,4 +30,7 @@ class HomeController < ApplicationController
       :type => 'text; charset=UTF-8;',
       :disposition => 'inline'
   end
+
+  def calculate
+  end
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'home/generate'
+  get 'home/calculate'
 
   root 'home#index'
 end

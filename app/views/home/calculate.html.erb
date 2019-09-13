@@ -1,0 +1,41 @@
+<br />
+
+<div>
+  Calculate how many legal statlines are possible:<br /><br />
+</div>
+
+Stat minimum: <input type="number" id="statmin" value="1"></<input><br /><br />
+Stat maximum: <input type="number" id="statmax" value="6"></<input><br /><br />
+Statline limit: <input type="number" id="statline"></<input><br />
+<br />
+<button type="button" onclick="go();">Calculate</button>
+
+<br /><br />
+<div id="the_count">
+</div>
+
+<script type="text/javascript">
+  function go() {
+    var min = parseInt(document.getElementById("statmin").value);
+    var max = parseInt(document.getElementById("statmax").value);
+    var statline = parseInt(document.getElementById("statline").value, 0);
+    var total_count = 0;
+
+    for(var x=min; x<=max; x++) {
+      for(var y=min; y<=max; y++) {
+        for(var z=min; z<=max; z++) {
+          if((x+y+z) <= statline)
+            total_count++;
+          else
+              break;
+        }
+      }
+    }
+
+    var div = document.getElementById("the_count");
+    div.innerHTML = "<h2>" + total_count + "</h2>";
+
+    if(max*3 < statline)
+      div.innerHTML += "<br />Note: since "+max+" x 3 = "+(max*3)+", the statline limit entered is larger than the largest possible statline.";
+  }
+</script>
