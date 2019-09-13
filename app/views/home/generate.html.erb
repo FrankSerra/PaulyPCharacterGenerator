@@ -1,28 +1,28 @@
 <br />
-<table>
+<table class="bulkchartable">
   <thead>
     <tr>
       <th>Race</th>
       <th>Armor</th>
       <th>Stats</th>
       <th>Resource</th>
-      <th>Loadout</th>
+      <th style="text-align:left">Loadout</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody style="text-align: center">
     <% @characters.each do |c| %>
     <tr>
-      <td style="text-align:right"><%= c.race %></td>
+      <td><%= c.race %></td>
       <td><%= c.armor %></td>
       <td>
         <%= c.stats_short.each.map{|k, v| k + ": " + v}.join(", ") %>
       </td>
       <td style="text-align:right"><%= c.resourcename + ": " + c.resourcevalue %></td>
-      <td  style="text-align:left">
+      <td style="text-align:left">
         <% if c.style %>
           <%= c.style.name %>
-          <% if c.loadout %>
+          <% if c.loadout.size > 0 %>
             <%= " (" + c.loadout.join(", ") + ")" %>
           <% end %>
         <% end %>
